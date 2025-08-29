@@ -33,3 +33,4 @@ def decorar_generador(opcion):
     else:
         print(next(gc))
     print("Aguarde, en un momento sera atendido")
+    print("Comimit desde Windows")
