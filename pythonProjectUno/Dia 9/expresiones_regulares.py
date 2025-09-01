@@ -17,6 +17,9 @@
 #{n,} → n veces o más
 #{n,m} → Entre n y m veces
 
+
+
+
 import re
 
 texto = "Si necesitas ayuda llama al (658)-598-9977 las 24 horas al servicio de ayuda online"
