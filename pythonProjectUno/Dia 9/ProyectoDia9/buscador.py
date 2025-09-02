@@ -34,5 +34,4 @@ def main():
     fin = time.time()
     print(f'Duración de la búsqueda: {math.ceil(fin - inicio)} segundos')
 
-
 main()
