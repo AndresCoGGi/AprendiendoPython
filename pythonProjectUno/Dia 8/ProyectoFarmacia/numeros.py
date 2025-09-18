@@ -18,7 +18,6 @@ def generador_cosmeticos():
         yield "C-0" + str(c)
         c += 1
 
-
 gp = generador_perfumeria()
 gf = generador_farmacia()
 gc = generador_cosmeticos()
