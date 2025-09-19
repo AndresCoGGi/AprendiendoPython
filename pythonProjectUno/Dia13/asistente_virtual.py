@@ -145,10 +145,10 @@ def  pedir_cosas():
             hablar('Claro, estoy en eso')
             webbrowser.open('https://m365.cloud.microsoft/apps/?auth=2&origindomain=Office')
             continue
-        elif 'que dia es hoy' in pedido:
+        elif 'que día es hoy' in pedido:
             pedir_dia()
             continue
-        elif 'que hora es' in pedido:
+        elif 'hora' in pedido:
             pedir_hora()
             continue
         elif 'busca en wikipedia' in pedido:
@@ -156,7 +156,7 @@ def  pedir_cosas():
             pedido = pedido.replace('busca en wikipedia','')
             wikipedia.set_lang('es')
             resultado = wikipedia.summary(pedido, sentences=1)
-            hablar(f'Wikipendia dice esto: {resultado}')
+            hablar(f'Wikipedia dice esto: {resultado}')
         elif 'busca en internet' in pedido:
             hablar('Ok, consultando')
             pywhatkit.search(pedido.replace('busca en internet',''))
@@ -168,7 +168,9 @@ def  pedir_cosas():
             continue
         elif 'broma' in pedido:
             hablar(pyjokes.get_joke('es'))
-
+        elif 'chao' in pedido:
+            hablar('Ok, Andres nos vemos luego')
+            comenzar = False
 
 
 pedir_cosas()
