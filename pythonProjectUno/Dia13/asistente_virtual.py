@@ -120,7 +120,7 @@ def saludo_inicial():
         momento = 'Buenas tardes'
 
     #decir el saludo
-    hablar(f'{momento} Andru, soy Sabina, tu asistente personal. Por favor, dime en que te puedo ayudar')
+    hablar(f'{momento} Andres, soy Sabina, tu asistente personal. Por favor, dime en que te puedo ayudar')
 
 # Funcion central del asistente
 def  pedir_cosas():
