@@ -2,7 +2,7 @@ import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver import ActionChains
 
-@pytest.mark.sandbox
+@pytest.mark.regresion
 def test_validar_texto_oculto_boton_dinamico(sandbox_page):
     sandbox_page.navigate_sandbox()
     #sandbox_page.click_enviar()
@@ -13,6 +13,7 @@ def test_validar_texto_oculto_boton_dinamico(sandbox_page):
     texto_esperado = "OMG, aparezco después de 3 segundos de haber hecho click en el botón"
     assert texto_esperado in elemento_texto_oculto.text, "No coincide el texto oculto"
 
+@pytest.mark.regresion
 def test_boton_id_dinamico_cambio_color(sandbox_page):
     sandbox_page.navigate_sandbox()
 
@@ -31,3 +32,45 @@ def test_boton_id_dinamico_cambio_color(sandbox_page):
 def test_elegir_check(sandbox_page):
     sandbox_page.navigate_sandbox()
     sandbox_page.select_checkbox('Pasta')
+
+@pytest.mark.regresion
+def test_elegir_radio_button(sandbox_page):
+    sandbox_page.navigate_sandbox()
+    sandbox_page.select_radio_button('Si')
+
+@pytest.mark.regresion
+def test_elegir_un_deporte(sandbox_page):
+    sandbox_page.navigate_sandbox()
+    sandbox_page.select_deporte('Fútbol')
+
+@pytest.mark.regresion
+def test_deportes_options(sandbox_page):
+    sandbox_page.navigate_sandbox()
+    options = sandbox_page.get_deporte_dropdown_option()
+    expected_options = ['Seleccioná un deporte', 'Fútbol', 'Tennis', 'Basketball']
+
+    assert options == expected_options
+
+@pytest.mark.regresion
+def test_popup_title(sandbox_page):
+    sandbox_page.navigate_sandbox()
+    sandbox_page.click_boton_popup()
+    popup_title = sandbox_page.get_texto_popup_titulo()
+    expected_popup_title = "Popup de ejemplo"
+    assert popup_title == expected_popup_title, f"El texto del popup es incorrecto"
+
+@pytest.mark.regresion
+def test_valor_celda_cambia(sandbox_page):
+    sandbox_page.navigate_sandbox()
+    valor_inicial  = sandbox_page.get_cell_value(2,3)
+    sandbox_page.reload_page()
+    valor_final  =sandbox_page.get_cell_value(2,3)
+    assert valor_final != valor_inicial
+
+@pytest.mark.actual
+def test_valor_celda_queda_igual(sandbox_page):
+    sandbox_page.navigate_sandbox()
+    valor_inicial  = sandbox_page.get_cell_value_estatica(2,3)
+    sandbox_page.reload_page()
+    valor_final  =sandbox_page.get_cell_value_estatica(2,3)
+    assert valor_final == valor_inicial
