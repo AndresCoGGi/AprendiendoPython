@@ -1,7 +1,11 @@
 import pytest
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver import ActionChains
+import allure
 
+@allure.title("El boton muestra un text luego de hacer clic en boton dinamico")
+@allure.epic("Interfaz Web")
+@allure.feature("Boton con ID dinamico")
 @pytest.mark.regresion
 def test_validar_texto_oculto_boton_dinamico(sandbox_page):
     sandbox_page.navigate_sandbox()
@@ -67,10 +71,14 @@ def test_valor_celda_cambia(sandbox_page):
     valor_final  =sandbox_page.get_cell_value(2,3)
     assert valor_final != valor_inicial
 
-@pytest.mark.actual
+@allure.title("Validar que las celdas queden iguales despues de recargar")
+@pytest.mark.regresion
 def test_valor_celda_queda_igual(sandbox_page):
-    sandbox_page.navigate_sandbox()
-    valor_inicial  = sandbox_page.get_cell_value_estatica(2,3)
-    sandbox_page.reload_page()
-    valor_final  =sandbox_page.get_cell_value_estatica(2,3)
-    assert valor_final == valor_inicial
+    with allure.step("Dado que navego al sandbox y tomo el valor inicial de la tabla estatica"):
+        sandbox_page.navigate_sandbox()
+        valor_inicial  = sandbox_page.get_cell_value_estatica(2,3)
+    with allure.step("Cuando se recarga la pagina y tomo el valor de la misma tabla"):
+        sandbox_page.reload_page()
+        valor_final  =sandbox_page.get_cell_value_estatica(2,3)
+    with allure.step("Puedo verificar que el valor no cambia"):
+        assert valor_final == valor_inicial
